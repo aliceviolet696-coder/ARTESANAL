@@ -8,6 +8,12 @@ public class Maquina {
     private double precioPorMl;
     private double capacidadMaxima;
     private double cantidadActual;
+    
+    
+    
+    public Maquina() {
+    	
+    }
 
     public Maquina(String codigo, String nombreCerveza, String descripcion, double precioPorMl, double capacidadMaxima) {
 
@@ -23,6 +29,26 @@ public class Maquina {
     public Maquina(String codigo, String nombreCerveza, String descripcion, double precioPorMl) {
 
         this.codigo = codigo;
+        this.nombreCerveza = nombreCerveza;
+        this.descripcion = descripcion;
+        this.precioPorMl = precioPorMl;
+        this.capacidadMaxima = 10000;
+        this.cantidadActual = 0;
+
+    }
+
+    public Maquina(String nombreCerveza, String descripcion, double precioPorMl, double capacidadMaxima) {
+
+        this.nombreCerveza = nombreCerveza;
+        this.descripcion = descripcion;
+        this.precioPorMl = precioPorMl;
+        this.capacidadMaxima = capacidadMaxima;
+        this.cantidadActual = 0;
+
+    }
+
+    public Maquina(String nombreCerveza, String descripcion, double precioPorMl) {
+
         this.nombreCerveza = nombreCerveza;
         this.descripcion = descripcion;
         this.precioPorMl = precioPorMl;
@@ -114,9 +140,7 @@ public class Maquina {
 
             cantidadActual = cantidadActual - cantidad;
 
-            double valor;
-
-            valor = cantidad * precioPorMl;
+            double valor = cantidad * precioPorMl;
 
             return valor;
 
