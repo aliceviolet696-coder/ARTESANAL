@@ -1,6 +1,5 @@
 package com.krakedev.artesanal.test;
 
-import com.krakedev.artesanal.Cliente;
 import com.krakedev.artesanal.NegocioMejorado;
 
 public class TestClientes {
@@ -9,17 +8,23 @@ public class TestClientes {
 
 		NegocioMejorado negocio = new NegocioMejorado("Cervezas Artesanales");
 
+		negocio.agregarMaquina("Pilsener", "Cerveza rubia de la casa", 0.02);
+		negocio.agregarMaquina("Stout", "Cerveza negra de avena", 0.05);
+		negocio.cargarMaquinas();
+
 		negocio.registrarCliente("Ana Torres", "0102030405");
 		negocio.registrarCliente("Luis Ramirez", "1102030405");
 
-		System.out.println("Clientes registrados:" + negocio.getClientes().size());
+		String codigoMaquina = negocio.getMaquinas().get(0).getCodigo();
+		String codigoCliente = negocio.buscarClientePorCedula("0102030405").getCodigo();
 
-		for (int i = 0; i < negocio.getClientes().size(); i++) {
-			Cliente cliente = negocio.getClientes().get(i);
-			System.out.println("Codigo:" + cliente.getCodigo()
-					+ ", Nombre:" + cliente.getNombre()
-					+ ", Cedula:" + cliente.getCedula());
-		}
+		negocio.consumirCerveza(codigoCliente, codigoMaquina, 500);
+
+		System.out.println("Codigo cliente:" + codigoCliente);
+		System.out.println("Codigo maquina:" + codigoMaquina);
+		System.out.println("Total consumido cliente:"
+				+ negocio.buscarClientePorCodigo(codigoCliente).getTotalConsumido());
+		System.out.println("Valor vendido:" + negocio.consultarValorVendido());
 
 	}
 

@@ -109,4 +109,29 @@ public class NegocioMejorado {
 		return null;
 	}
 
+	public void registrarConsumo(Cliente cliente, double valor) {
+		cliente.setTotalConsumido(cliente.getTotalConsumido() + valor);
+	}
+
+	public void consumirCerveza(String codigoCliente, String codigoMaquina, double cantidad) {
+		Maquina maquina = recuperarMaquina(codigoMaquina);
+		Cliente cliente = buscarClientePorCodigo(codigoCliente);
+
+		if (maquina == null || cliente == null) {
+			return;
+		}
+
+		double valor = maquina.servirCerveza(cantidad);
+		registrarConsumo(cliente, valor);
+	}
+
+	public double consultarValorVendido() {
+		double suma = 0;
+		for (int i = 0; i < clientes.size(); i++) {
+			Cliente cliente = clientes.get(i);
+			suma = suma + cliente.getTotalConsumido();
+		}
+		return suma;
+	}
+
 }
